@@ -1,0 +1,216 @@
+form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(90deg, #8ECAE6, #73BFDC);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row; // Definir a direção da flexbox como row inicialmente
+
+    .left-text {
+        width: 50vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        h1 {
+            font-family: "Roboto", sans-serif;
+            font-weight: 300;
+
+            strong {
+                font-family: "Roboto", sans-serif;
+                font-weight: 600;
+                color: #FB8500;
+            }
+        }
+
+        .animated-word {
+            display: inline-block;
+            width: 10ch;
+            text-align: left;
+            white-space: nowrap;
+        }
+    }
+
+    .right-login {
+        width: 50vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .card-login {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: #219EBC;
+            padding: 30px 35px;
+            border-radius: 18px;
+            box-shadow: 0px 24px 66px #1a7799;
+
+            .textfield {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: center;
+                margin: 10px 0px;
+
+                input {
+                    width: 100%;
+                    border: none;
+                    border-radius: 8px;
+                    padding: 12px; // Aumentado para dar mais espaço
+                    font-size: 10pt;
+                    font-family: "Poppins", sans-serif;
+                    font-weight: 300;
+                    font-style: normal;
+                    outline: none;
+                    box-sizing: border-box;
+                }
+
+                label {
+                    margin-bottom: 10px;
+                }
+            }
+
+            .btn-login {
+                width: 100%;
+                background-color: #FFB703;
+                padding: 16px 0px;
+                margin: 25px 0 0 0;
+                border: none;
+                border-radius: 8px;
+                outline: none;
+                font-family: "Open Sans", sans-serif;
+                font-weight: 700;
+                letter-spacing: 3px;
+                cursor: pointer;
+            }
+
+            .register-container {
+                width: 100%;
+                display: flex;
+                justify-content: flex-start;
+
+                .register-link {
+                    margin-top: 15px;
+                    font-family: "Poppins", sans-serif;
+                    font-weight: 300;
+                    font-size: 14px;
+                    color: #161413;
+                    text-decoration: underline;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1400px) {
+    .container {
+        .left-text {
+            h1 {
+                font-size: 1.8em;
+            }
+        }
+    }
+}
+
+@media (max-width: 992px) {
+    .container {
+        flex-direction: column; // Mudança para coluna
+
+        .left-text {
+            width: 100%;
+            height: auto;
+            h1 {
+                font-size: 1.6em;
+            }
+            text-align: center;
+        }
+
+        .right-login {
+            width: 100%;
+            height: auto;
+            margin-top: 20px;
+
+            .card-login {
+                width: 80%;
+                max-width: 400px;
+                padding: 20px; // Ajuste do padding para telas menores
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        .left-text {
+            h1 {
+                font-size: 1.4em;
+            }
+        }
+
+        .right-login {
+            .card-login {
+                padding: 15px;
+
+                .btn-login {
+                    padding: 8px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        .left-text {
+            h1 {
+                font-size: 1.2em;
+            }
+        }
+
+        .right-login {
+            .card-login {
+                padding: 10px;
+
+                .btn-login {
+                    padding: 6px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 360px) {
+    .container {
+        .left-text {
+            h1 {
+                font-size: 1em;
+            }
+        }
+
+        .right-login {
+            .card-login {
+                padding: 5px;
+
+                .btn-login {
+                    padding: 4px;
+                }
+            }
+        }
+    }
+}

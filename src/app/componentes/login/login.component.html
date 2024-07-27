@@ -1,0 +1,31 @@
+<div class="container">
+
+    <div class="left-text">
+        <h1>Faça login ao lado <br>
+        para realizar os seus <br>
+        <strong class="animated-word">{{ currentWord }}</strong></h1>
+        <img ngSrc="/assets/logo-car.svg" width="400" height="400" priority>
+    </div>
+
+    <div class="right-login">
+
+        <div class="card-login">
+
+            <form [formGroup]="formLogin">
+                <div class="textfield">       
+                    <label for="email">Email: </label>
+                    <input id="email" type="text" placeholder="Insira aqui seu Email" formControlName="email"/>
+                </div>
+
+                <div class="textfield">
+                    <label for="senha">Senha: </label>
+                    <input id="senha" type="password" placeholder="Insira aqui sua Senha" formControlName="senha"/>
+                </div>
+                <button class="btn-login">LOGIN</button>
+                <div class="register-container">
+                    <a (click)="openModal()" class="register-link" >Registre-se aqui!</a>
+                </div>
+                <app-registro-usuario></app-registro-usuario>
+            </form>
+    </div>
+</div>
