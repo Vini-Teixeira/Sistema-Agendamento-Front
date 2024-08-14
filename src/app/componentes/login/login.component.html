@@ -21,9 +21,9 @@
                     <label for="senha">Senha: </label>
                     <input id="senha" type="password" placeholder="Insira aqui sua Senha" formControlName="senha"/>
                 </div>
-                <button class="btn-login">LOGIN</button>
+                <button type="button" (click)="onSubmit()" class="btn-login">LOGIN</button>
                 <div class="register-container">
-                    <a (click)="openModal()" class="register-link" >Registre-se aqui!</a>
+                    <a (click)="openModal()" class="register-link" routerLink="/app-home" routerLinkActive="active">Registre-se aqui!</a>
                 </div>
                 <app-registro-usuario></app-registro-usuario>
             </form>

@@ -19,10 +19,10 @@
 
           <div class="textFieldRegister">
             <label for="confirmSenhaRegister">Confirme sua senha:</label>
-            <input id="confirmSenhaRegister" type="password" placeholder="Confirme sua senha" formControlName="confirmPassword" />
+            <input id="confirmSenhaRegister" type="password" placeholder="Confirme sua senha" formControlName="confirmeSenha" />
           </div>
 
-          <button class="btn-register" type="submit" [disabled]="!formRegister.valid">Registre-se!</button>
+          <button class="btn-register" (click)="onSubmit()" type="button" [disabled]="!formRegister.valid">Registre-se!</button>
 
       </div>
 
