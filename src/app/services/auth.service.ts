@@ -23,7 +23,10 @@ export class AuthService {
   }
 
   isUserLoggedIn(): boolean {
-    return !!localStorage.getItem('authToken')
+    if(typeof localStorage !== 'undefined') {
+      return !!localStorage.getItem('authToken')
+    }
+    return false
   }
 
   logout(): void {
