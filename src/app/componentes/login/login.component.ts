@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, NgZone } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router'; 
 
@@ -9,7 +9,7 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, NgOptimizedImage, RegistroUsuarioComponent],
+  imports: [ReactiveFormsModule, NgOptimizedImage, RegistroUsuarioComponent, CommonModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
@@ -17,6 +17,7 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent implements OnInit, OnDestroy {
 
   formLogin: FormGroup;
+  isLoading = false
   errorMessage: string | null = null
 
   currentWord: string = ''
@@ -42,7 +43,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.clearTimes()
   }
 
-  clearTimes():void {
+  clearTimes(): void{
     if(this.interval) {
       clearInterval(this.interval)
       this.interval = null
@@ -99,6 +100,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    this.isLoading = true
+
     const email = this.formLogin.get('email')?.value
     const senha = this.formLogin.get('senha')?.value
 
@@ -107,9 +110,13 @@ export class LoginComponent implements OnInit, OnDestroy {
         const token = response.token
         this.authService.storeToken(token)
         this.errorMessage = null
-        this.router.navigate(['/home'])
+        setTimeout(() => {
+          this.isLoading = false
+          this.router.navigate(['/home'])
+        }, 1000)
       },
       error => {
+        this.isLoading = false
         console.log('Falha no login', error)
         if(error.status === 404) {
           this.errorMessage = 'Usuário ou senha inválidos.'
@@ -119,5 +126,4 @@ export class LoginComponent implements OnInit, OnDestroy {
       }
     )
   }
-
 }

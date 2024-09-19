@@ -1,0 +1,57 @@
+.dialog-container {
+    background-color: #126782; // Mantém a harmonia com a tabela
+    border-radius: 12px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    color: #fff; // Texto branco para contraste
+  }
+  
+  .dialog-title {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #FFB703; // Combina com a animação das palavras
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .dialog-content {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: #ffffff;
+    text-align: center;
+  }
+  
+  .dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  
+    button {
+      font-size: 1rem;
+      font-family: "Open Sans", sans-serif;
+      letter-spacing: 1px;
+      padding: 8px 16px;
+      margin-left: 10px;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+      
+      &:first-child {
+        background-color: #8ECAE6;
+        color: #fff;
+        
+        &:hover {
+          background-color: #73BFDC;
+        }
+      }
+  
+      &:last-child {
+        background-color: #FB8500; // Combina com o botão "Novo Agendamento"
+        color: #fff;
+        
+        &:hover {
+          background-color: #BB3E03; // Combina com o botão "Editar Agendamento"
+        }
+      }
+    }
+  }
+  

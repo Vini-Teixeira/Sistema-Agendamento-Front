@@ -1,0 +1,154 @@
+body {
+  background: linear-gradient(90deg, #8ECAE6, #73BFDC)
+}
+
+input {
+  border-radius: 8px;
+  border: none;
+}
+
+.success-snackbar { 
+  display: flex;
+  align-items: center;
+  background-color: #4caf50;
+  color: #fff;
+
+  ::before {
+    content: '✔️';
+    font-size: 1.5rem;
+    margin-right: 8px;
+    animation: drawCheckmark 0.5s ease-in-out forwards;
+  }
+}
+
+@keyframes drawCheckmark {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.center-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  h1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+  }
+
+  .palavra-animada {
+    display: inline-block;
+    width: 10ch;
+    white-space: nowrap;
+    color: #FFB703
+  }
+}
+
+.botoes-agendamentos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.btn-novo-agendamento,
+.btn-editar-agendamento,
+.btn-delete-agendamento {
+  width: 20%;
+  padding: 12px;
+  margin: 18px;
+  border: none;
+  border-radius: 14px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 500;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+.btn-novo-agendamento {
+  align-self: flex-start;
+  background-color: #FB8500;
+}
+
+.btn-editar-agendamento {
+  align-self: center;
+  background-color: #BB3E03;
+}
+
+.btn-delete-agendamento {
+  align-self: flex-end;
+  background-color: #9A130E;
+}
+
+.mat-elevation-z8 {
+  background-color: #126782;
+}
+
+.mat-column-position {
+  text-align: center;
+}
+
+.table-page {
+    width: 100%;
+  }
+  
+  tr.example-detail-row {
+    height: 0;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):hover {
+    background-color: #023047;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):active {
+    background-color: #023047;
+  }
+  
+  .example-element-row td {
+    border-bottom-width: 0;
+  }
+  
+  .example-element-detail {
+    overflow: hidden;
+    display: flex;
+  }
+  
+  .example-element-diagram {
+    min-width: 80px;
+    border: 2px solid black;
+    padding: 8px;
+    font-weight: lighter;
+    margin: 8px 0;
+    height: 104px;
+  }
+  
+  .example-element-symbol {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: normal;
+  }
+  
+  .example-element-description {
+    padding: 16px;
+  }
+  
+  .example-element-description-attribution {
+    opacity: 0.5;
+  }
+
+.error-snackbar {
+  background-color: #9A130E; /* Cor de erro */
+  color: #fff; /* Texto branco */
+  font-weight: bold;
+  text-align: center;
+}

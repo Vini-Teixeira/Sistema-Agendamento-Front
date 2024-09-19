@@ -5,7 +5,7 @@ import { HomeComponent } from './componentes/home/home.component';
 import { CanActivateGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
-    { path: '', component:LoginComponent, pathMatch: 'full', title:'Login - Sistema' },
+    { path: '', component: LoginComponent, pathMatch: 'full', title:'Login - Sistema' },
     { path: 'registro-usuario', component: RegistroUsuarioComponent, title: 'Registro de Usuário' },
     { path: 'home', component: HomeComponent, title: 'Home', canActivate: [CanActivateGuard] }
 ];

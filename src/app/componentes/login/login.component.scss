@@ -96,27 +96,65 @@ form {
                 font-family: "Open Sans", sans-serif;
                 font-weight: 700;
                 letter-spacing: 3px;
+                transition: all 0.3seg ease;
                 cursor: pointer;
             }
 
             .btn-login:hover {
-                border-radius: 30px;
+                letter-spacing: 7px;
+                box-shadow: 0 0 20px 10px rgba(255, 183, 3, 0.7);
             }
 
-            .register-container {
-                width: 100%;
-                display: flex;
-                justify-content: flex-start;
+.loading-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
 
-                .register-link {
-                    margin-top: 15px;
-                    font-family: "Poppins", sans-serif;
-                    font-weight: 300;
-                    font-size: 14px;
-                    color: #161413;
-                    text-decoration: underline;
-                    cursor: pointer;
-                }
+    .spinner {
+        border: 4px solid #ffffff4d;
+        border-top: 4px solid #fff;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        animation: spin 1s linear infinite;
+        margin-right: 8px;
+    }
+
+    .loading-texto {
+        font-size: 12px;
+        font-family: "Poppins", sans-serif;
+        color: #fff;
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.message-error {
+    margin-top: 10px;
+    color: red;
+    font-size: 12px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    text-align: center;
+}
+
+.register-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+
+        .register-link {
+            margin-top: 15px;
+            font-family: "Poppins", sans-serif;
+            font-weight: 300;
+            font-size: 14px;
+            color: #161413;
+            text-decoration: underline;
+            cursor: pointer;
             }
         }
     }
@@ -217,4 +255,5 @@ form {
             }
         }
     }
+}
 }

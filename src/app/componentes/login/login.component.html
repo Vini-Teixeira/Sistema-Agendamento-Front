@@ -2,8 +2,10 @@
 
     <div class="left-text">
         <h1>Faça login ao lado <br>
-        para realizar os seus <br>
-        <strong class="animated-word">{{ currentWord }}</strong></h1>
+            para realizar os seus <br>
+            <strong class="animated-word">{{ currentWord }}</strong>
+        </h1>
+        
         <img ngSrc="/assets/logo-car.svg" width="400" height="400" priority>
     </div>
 
@@ -22,6 +24,16 @@
                     <input id="senha" type="password" placeholder="Insira aqui sua Senha" formControlName="senha"/>
                 </div>
                 <button type="button" (click)="onSubmit()" class="btn-login">LOGIN</button>
+
+                <div *ngIf="isLoading" class="loading-container">
+                    <span class="spinner"></span>
+                    <span class="loading-texto">Logando...</span>
+                </div>
+
+                <div *ngIf="errorMessage" class="message-error">
+                    {{ errorMessage }}
+                </div>
+
                 <div class="register-container">
                     <a (click)="openModal()" class="register-link" routerLink="/app-home" routerLinkActive="active">Registre-se aqui!</a>
                 </div>
