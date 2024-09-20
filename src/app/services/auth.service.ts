@@ -5,14 +5,15 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
   isLoggedIn: boolean = false
-  private apiUrl = 'http://localhost:3000/auth'
+  private baseUrl = 'https://sistema-agendamento-back.onrender.com'
 
   constructor(private http: HttpClient) { }
 
   login(email: string, senha: string): Observable<any> {
-    const url = `${this.apiUrl}/loginUsuario`
+    const url = `${this.baseUrl}/loginUsuario`
     const body = { email, senha }
     return this.http.post(url, body)
   }
@@ -35,7 +36,7 @@ export class AuthService {
   }
 
   register(email: string, senha: string, confirmeSenha: string): Observable<any> {
-    const url = `${this.apiUrl}/registroUsuario`
+    const url = `${this.baseUrl}/registroUsuario`
     const body = { email, senha, confirmeSenha }
     return this.http.post(url, body)
   }
