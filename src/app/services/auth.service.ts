@@ -13,7 +13,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(email: string, senha: string): Observable<any> {
-    const url = `${this.baseUrl}/loginUsuario`
+    const url = `${this.baseUrl}/auth/loginUsuario`
     const body = { email, senha }
     return this.http.post(url, body)
   }
@@ -36,7 +36,7 @@ export class AuthService {
   }
 
   register(email: string, senha: string, confirmeSenha: string): Observable<any> {
-    const url = `${this.baseUrl}/registroUsuario`
+    const url = `${this.baseUrl}/auth/registroUsuario`
     const body = { email, senha, confirmeSenha }
     return this.http.post(url, body)
   }
