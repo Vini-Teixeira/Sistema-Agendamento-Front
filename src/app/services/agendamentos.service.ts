@@ -8,23 +8,23 @@ import { Agendamentos } from '../componentes/home/home.component';
 })
 
 export class AgendamentosService {
-  private apiUrl = 'https://https://sistema-agendamento-back.onrender.com/agendamentos'
+  private apiUrl = 'https://sistema-agendamento-back.onrender.com/agendamentos'
 
   constructor(private http: HttpClient) { }
 
   getAgendamentos(): Observable<Agendamentos[]> {
-    return this.http.get<Agendamentos[]>(this.apiUrl)
+    return this.http.get<Agendamentos[]>(`${this.apiUrl}`)
   }
 
-  saveAgendamento(agendamento: any): Observable<any> {
-    return this.http.post(this.apiUrl, agendamento)
+  saveAgendamento(agendamento: Agendamentos): Observable<Agendamentos> {
+    return this.http.post<Agendamentos>(`${this.apiUrl}`, agendamento)
   }
 
-  updateAgendamento(id: string, agendamento: Agendamentos) {
-    return this.http.put(`${this.apiUrl}/${id}`, agendamento)
+  updateAgendamento(id: string, agendamento: Agendamentos): Observable<Agendamentos> {
+    return this.http.put<Agendamentos>(`${this.apiUrl}/${id}`, agendamento)
   }
 
   deleteAgendamento(ids: string[]): Observable<any> {
-    return this.http.delete(`http://localhost:3000/agendamentos`, { body: { ids } })
+    return this.http.delete(`${this.apiUrl}`, { body: { ids } })
   }
 }
