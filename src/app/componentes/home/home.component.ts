@@ -43,7 +43,7 @@ export class HomeComponent {
   // Fim das palavras animadas
 
   // Referente às colunas das tabelas
-  displayedColumns: string[] = ['select', 'position', 'nome', 'telefone', 'placa', 'servico']
+  displayedColumns: string[] = ['select', 'position', 'nome', 'telefone', 'placa', 'servico', 'preco']
   dataSources: Agendamentos[] = []
 
   ngOnInit() {
@@ -142,6 +142,9 @@ export class HomeComponent {
       telefone: '',
       placa: '',
       servico: '',
+      data: '',
+      horario: '',
+      preco: '',
       editMode: true
     };
     this.dataSources.push(newAgendamento)

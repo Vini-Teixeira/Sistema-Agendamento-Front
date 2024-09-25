@@ -5,5 +5,8 @@ export interface Agendamentos {
   telefone: string
   placa: string
   servico: string
+  data: string
+  horario: string
+  preco: string
   editMode: boolean
 }
