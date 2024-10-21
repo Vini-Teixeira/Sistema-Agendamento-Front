@@ -3,7 +3,7 @@ import { Component, NgZone, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog'
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatTable, MatTableModule } from '@angular/material/table';
+import { MatTable, MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatSnackBar } from '@angular/material/snack-bar'
@@ -25,7 +25,7 @@ import { ConfirmarDialogComponent } from '../confirmar-dialog/confirmar-dialog.c
 })
 
 export class HomeComponent {
-  title = 'Home';
+  title = 'Home'
 
   constructor(private ngZone: NgZone, private agendamentosService: AgendamentosService, private snackBar : MatSnackBar,
     private dialog: MatDialog) { }
@@ -43,8 +43,14 @@ export class HomeComponent {
   // Fim das palavras animadas
 
   // Referente às colunas das tabelas
-  displayedColumns: string[] = ['select', 'position', 'nome', 'telefone', 'placa', 'servico', 'preco']
-  dataSources: Agendamentos[] = []
+  displayedColumns: string[] = ['select', 'position', 'nome', 'telefone', 'placa', 'servico', 'valor']
+  agendamentos: Agendamentos[] = []
+  dataSources = new MatTableDataSource<Agendamentos>(this.agendamentos)
+
+  adjustTextArea(event: any): void {
+    event.target.style.height = 'auto'
+    event.target.style.height = event.target.scrollHeight + 'px'
+  }
 
   ngOnInit() {
     this.startAnimation()
@@ -99,14 +105,10 @@ export class HomeComponent {
   }
   // Fim da animação das palavras
 
-  selection = new SelectionModel<Agendamentos>(true, [])
-
   loadAgendamentos() {
     this.agendamentosService.getAgendamentos().subscribe((data: Agendamentos[]) => {
-      this.dataSources = data.map((agendamento, index) => ({
-        ...agendamento,
-        position: index + 1
-      }));
+      this.agendamentos = data
+      this.dataSources.data = this.agendamentos
       
       if (this.table) {
         this.table.renderRows()
@@ -114,10 +116,18 @@ export class HomeComponent {
     });
   }
 
+  selection = new SelectionModel<Agendamentos>(true, [])
+
   isAllSelected() {
     const numSelected = this.selection.selected.length
-    const numRows = this.dataSources.length
+    const numRows = this.dataSources.data.length
     return numSelected === numRows
+  }
+
+  masterToggle() {
+    this.isAllSelected() ?
+    this.selection.clear() :
+    this.dataSources.data.forEach(row => this.selection.select(row))
   }
 
   toggleAllRows() {
@@ -125,7 +135,9 @@ export class HomeComponent {
       this.selection.clear()
       return
     }
-    this.selection.select(...this.dataSources)
+    for (const agendamento of this.dataSources.data) {
+      console.log(agendamento);
+    }    
   }
 
   checkboxLabel(row?: Agendamentos): string {
@@ -137,18 +149,19 @@ export class HomeComponent {
 
   addNewAgendamento() {
     const newAgendamento: Agendamentos = {
-      position: this.dataSources.length + 1,
+      position: this.dataSources.data.length + 1,
       nome: '',
       telefone: '',
       placa: '',
       servico: '',
       data: '',
       horario: '',
-      preco: '',
+      valor: '',
       editMode: true
     };
-    this.dataSources.push(newAgendamento)
-    this.dataSources.forEach((agendamento, index) => {
+    this.dataSources.data.push(newAgendamento)
+    this.dataSources._updateChangeSubscription()
+    this.dataSources.data.forEach((agendamento, index) => {
       agendamento.position = index + 1
     });
 
@@ -171,10 +184,10 @@ export class HomeComponent {
 
   onEnter(element: Agendamentos) {
     // Transformando todas as letras em maiúsculas
-    element.placa = element.placa.toUpperCase();
+    element.placa = element.placa.toUpperCase()
 
   // Verifica se o formato da placa está correto
-  const placaRegex = /^[A-Z]{3}-[0-9]{1}[A-Z0-9]{1}[0-9]{2}$/;
+  const placaRegex = /^[A-Z]{3}-[0-9]{1}[A-Z0-9]{1}[0-9]{2}$/
 
   if (!placaRegex.test(element.placa)) {
     this.snackBar.open('A placa deve estar no formato AAA-0000 ou AAA-0A00', 'Fechar', {
@@ -248,7 +261,8 @@ export class HomeComponent {
       return
     }
 
-    this.dataSources.forEach(ag => ag.editMode = false)
+    this.dataSources.data.forEach((ag: Agendamentos) => {
+    })
 
     selectedAgendamento.editMode = true
     this.currentEditingElement = selectedAgendamento
@@ -267,30 +281,30 @@ export class HomeComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         // Executa a lógica de exclusão do front-end
-        const index = this.dataSources.indexOf(element);
+        const index = this.dataSources.data.indexOf(element)
         if (index > -1) {
-          this.dataSources.splice(index, 1);
-          this.table.renderRows();
+          this.dataSources.data.splice(index, 1)
+          this.dataSources._updateChangeSubscription
         }
   
         // Exclui o agendamento do banco de dados
         this.agendamentosService.deleteAgendamento([element._id!]).subscribe({
           next: (response) => {
-            console.warn('Agendamento removido!', response);
-            this.showSuccessMessage('Agendamento removido com sucesso'); // Alterei a mensagem para ser mais apropriada
+            console.warn('Agendamento removido!', response)
+            this.showSuccessMessage('Agendamento removido com sucesso'); 
           },
           error: (error) => {
-            console.error('Erro ao remover agendamento!', error);
+            console.error('Erro ao remover agendamento!', error)
           }
         });
       } else {
-        console.log('Ação de exclusão cancelada');
+        console.log('Ação de exclusão cancelada')
       }
     });
   }
   
   deleteSelectedAgendamento() {
-    const selectedIds = this.selection.selected.map((element) => element._id!);
+    const selectedIds = this.selection.selected.map((element) => element._id!)
   
     if (selectedIds.length > 0) {
       // Abre o diálogo de confirmação
@@ -304,25 +318,28 @@ export class HomeComponent {
           // Se confirmado, realiza a exclusão dos agendamentos selecionados
           this.agendamentosService.deleteAgendamento(selectedIds).subscribe(
             (response) => {
-              console.warn('Agendamento(s) removido(s) com sucesso!', response);
+              console.warn('Agendamento(s) removido(s) com sucesso!', response)
   
               // Remove os agendamentos excluídos do front-end
-              this.dataSources = this.dataSources.filter((item) => !selectedIds.includes(item._id!));
-              this.selection.clear();
-              this.table.renderRows();
+              if (Array.isArray(selectedIds)) {
+                this.dataSources.data = this.dataSources.data.filter((item: Agendamentos) => 
+                  !selectedIds.includes(item._id!))
+                this.selection.clear()
+                this.table.renderRows()
+              }              
   
-              this.showSuccessMessage('Agendamentos removidos com sucesso!');
+              this.showSuccessMessage('Agendamentos removidos com sucesso!')
             },
             (error) => {
-              console.error('Erro ao remover', error);
+              console.error('Erro ao remover', error)
             }
           );
         } else {
-          console.log('Ação de exclusão múltipla cancelada');
+          console.log('Ação de exclusão múltipla cancelada')
         }
       });
     } else {
-      console.warn('Nenhum agendamento selecionado');
+      console.warn('Nenhum agendamento selecionado')
     }
   }  
 
@@ -336,4 +353,4 @@ export class HomeComponent {
   }
 }
 
-export { Agendamentos };
+export { Agendamentos }

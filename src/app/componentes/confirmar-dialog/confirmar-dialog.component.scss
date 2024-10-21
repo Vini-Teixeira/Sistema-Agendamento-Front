@@ -1,5 +1,5 @@
 .dialog-container {
-    background-color: #126782; // Mantém a harmonia com a tabela
+    background-color: #126782; 
     border-radius: 12px;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
     padding: 20px;
@@ -9,7 +9,7 @@
   .dialog-title {
     font-size: 1.5rem;
     font-weight: 400;
-    color: #FFB703; // Combina com a animação das palavras
+    color: #FFB703;
     text-align: center;
     margin-bottom: 20px;
   }
@@ -45,11 +45,11 @@
       }
   
       &:last-child {
-        background-color: #FB8500; // Combina com o botão "Novo Agendamento"
+        background-color: #FB8500; 
         color: #fff;
         
         &:hover {
-          background-color: #BB3E03; // Combina com o botão "Editar Agendamento"
+          background-color: #BB3E03;
         }
       }
     }
