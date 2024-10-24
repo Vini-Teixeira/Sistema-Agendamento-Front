@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 
 export class AuthService {
   isLoggedIn: boolean = false
-  private baseUrl = 'http://localhost:3000'
+  private baseUrl = 'https://sistema-agendamento-back.onrender.com'
 
   constructor(private http: HttpClient) { }
 
