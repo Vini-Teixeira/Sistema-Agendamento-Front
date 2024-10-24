@@ -8,7 +8,7 @@ import { Agendamentos } from '../componentes/home/home.component';
 })
 
 export class AgendamentosService {
-  private apiUrl = 'http://localhost:3000/agendamentos'
+  private apiUrl = 'https://sistema-agendamento-back.onrender.com/agendamentos'
 
   constructor(private http: HttpClient) { }
 
