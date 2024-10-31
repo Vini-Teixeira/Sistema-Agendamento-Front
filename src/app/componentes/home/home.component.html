@@ -132,17 +132,17 @@
           </td>
         </ng-container>
 
-      <!-- Coluna para o valor-->
-      <ng-container matColumnDef="valor">
-        <th mat-header-cell *matHeaderCellDef>Valor</th>
+      <!-- Coluna para o preço-->
+      <ng-container matColumnDef="preco">
+        <th mat-header-cell *matHeaderCellDef>Preço</th>
         <td mat-cell *matCellDef="let element">
 
-          <ng-container *ngIf="!element.editMode; else editValor">
-            {{element.valor}}
+          <ng-container *ngIf="!element.editMode; else editPreco">
+            {{element.preco}}
           </ng-container>
 
-          <ng-template #editValor>
-            <input [(ngModel)]="element.preco" placeholder="Valor" (keyup.enter)="onEnter(element)"/>
+          <ng-template #editPreco>
+            <input [(ngModel)]="element.preco" placeholder="Preço" (keyup.enter)="onEnter(element)"/>
           </ng-template>
 
         </td>

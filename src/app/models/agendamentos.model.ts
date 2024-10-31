@@ -7,6 +7,6 @@ export interface Agendamentos {
   servico: string
   data: string
   horario: string
-  valor: string
+  preco: string
   editMode: boolean
 }

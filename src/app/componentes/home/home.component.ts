@@ -43,7 +43,7 @@ export class HomeComponent {
   // Fim das palavras animadas
 
   // Referente às colunas das tabelas
-  displayedColumns: string[] = ['select', 'position', 'nome', 'telefone', 'placa', 'servico', 'valor']
+  displayedColumns: string[] = ['select', 'position', 'nome', 'telefone', 'placa', 'servico', 'preco']
   agendamentos: Agendamentos[] = []
   dataSources = new MatTableDataSource<Agendamentos>(this.agendamentos)
 
@@ -156,7 +156,7 @@ export class HomeComponent {
       servico: '',
       data: '',
       horario: '',
-      valor: '',
+      preco: '',
       editMode: true
     };
     this.dataSources.data.push(newAgendamento)
