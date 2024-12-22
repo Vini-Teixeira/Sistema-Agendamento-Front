@@ -1,31 +1,52 @@
 <div class="modal" id="registroModal">
-
   <div class="modal-content">
-
     <span class="close-button" (click)="closeModal()">&times;</span>
-      <h2>Registro de Usuário</h2>
-    
-      <div [formGroup]="formRegister">
+    <h2>Registro de Usuário</h2>
 
-          <div class="textFieldRegister">
-            <label for="emailRegister">Email:</label>
-            <input id="emailRegister" type="text" placeholder="Insira aqui seu Email para registro" formControlName="email" />
-          </div>
-        
-          <div class="textFieldRegister">
-            <label for="senhaRegister">Senha:</label>
-            <input id="senhaRegister" type="password" placeholder="Insira aqui sua senha" formControlName="senha" />
-          </div>
+    <!-- Mensagem de sucesso -->
+    <div *ngIf="successMessage" class="success-message">
+      {{ successMessage }}
+    </div>
 
-          <div class="textFieldRegister">
-            <label for="confirmSenhaRegister">Confirme sua senha:</label>
-            <input id="confirmSenhaRegister" type="password" placeholder="Confirme sua senha" formControlName="confirmeSenha" />
-          </div>
-
-          <button class="btn-register" (click)="onSubmit()" type="button" [disabled]="!formRegister.valid">Registre-se!</button>
-
+    <div [formGroup]="formRegister">
+      <div class="textFieldRegister">
+        <label for="emailRegister">Email:</label>
+        <input
+          id="emailRegister"
+          type="text"
+          placeholder="Insira aqui seu Email para registro"
+          formControlName="email"
+        />
       </div>
 
-  </div>
+      <div class="textFieldRegister">
+        <label for="senhaRegister">Senha:</label>
+        <input
+          id="senhaRegister"
+          type="password"
+          placeholder="Insira aqui sua senha"
+          formControlName="senha"
+        />
+      </div>
 
+      <div class="textFieldRegister">
+        <label for="confirmSenhaRegister">Confirme sua senha:</label>
+        <input
+          id="confirmSenhaRegister"
+          type="password"
+          placeholder="Confirme sua senha"
+          formControlName="confirmeSenha"
+        />
+      </div>
+
+      <button
+        class="btn-register"
+        (click)="onSubmit()"
+        type="button"
+        [disabled]="!formRegister.valid"
+      >
+        Registre-se!
+      </button>
+    </div>
+  </div>
 </div>
